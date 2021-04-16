@@ -9,6 +9,7 @@
         [Header("Prefabs")] 
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private GameObject towerPrefab;
+        [SerializeField] private GameObject flurryTowerPrefab;
 
         [Header("Settings")] 
         [SerializeField] private Vector2 boundsMin;
@@ -38,6 +39,9 @@
                 enemySpawnTimer = enemySpawnRate;
             }
 
+
+            
+
             if (Input.GetMouseButtonDown(0))
             {
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -47,7 +51,20 @@
                     var spawnPosition = hit.point;
                     spawnPosition.y = towerPrefab.transform.position.y;
 
-                    SpawnTower(spawnPosition);
+                    SpawnTower(spawnPosition, towerPrefab);
+                }
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out var hit, LayerMask.GetMask("Ground")))
+                {
+                    var spawnPosition = hit.point;
+                    spawnPosition.y = towerPrefab.transform.position.y;
+
+                    SpawnTower(spawnPosition, flurryTowerPrefab);
                 }
             }
 
@@ -72,9 +89,9 @@
             score++;
         }
 
-        private void SpawnTower(Vector3 position)
+        private void SpawnTower(Vector3 position, GameObject towerPrefab)
         {
-            var tower = Instantiate(towerPrefab, position, Quaternion.identity).GetComponent<SimpleTower>();
+            var tower = Instantiate(towerPrefab, position, Quaternion.identity).GetComponent<Tower>();
             tower.Initialize(enemies);
         }
     }
