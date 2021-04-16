@@ -24,7 +24,8 @@
             {
                 if (targetEnemy != null)
                 {
-                    var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity).GetComponent<Bullet>();
+                    var bullet = bulletPool.GetFromPool<Bullet>();
+                    bullet.transform.position = bulletSpawnPoint.transform.position;
                     bullet.Initialize(targetEnemy);
                 }
 

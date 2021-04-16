@@ -150,17 +150,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b3a9e4bd535ba4ba141be99b2c2511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7577324009426626682, guid: 530182aaaf989f444833d42faa8b16b7,
-    type: 3}
-  towerPrefab: {fileID: 8481531145051783542, guid: 25d0f396843308e46a1c35b076505faf,
-    type: 3}
-  flurryTowerPrefab: {fileID: 8481531145051783542, guid: 1fb0e44fc6443a349b54e069cc23e485,
-    type: 3}
   boundsMin: {x: -12, y: -8}
   boundsMax: {x: 12, y: 13}
   enemySpawnRate: 1
   enemiesCountText: {fileID: 1950592537}
   scoreText: {fileID: 1448683482}
+  ground: {fileID: 1823526738}
+  enemyPool: {fileID: 11400000, guid: 070d0a1fec1f7324cb660a238f5c6cec, type: 2}
+  towerPool: {fileID: 11400000, guid: 6b534c7e1f948bf46baf0df229735dd0, type: 2}
+  flurryTowerPool: {fileID: 11400000, guid: 9648f3af050e18543b634504cc278a52, type: 2}
 --- !u!4 &536068723
 Transform:
   m_ObjectHideFlags: 0

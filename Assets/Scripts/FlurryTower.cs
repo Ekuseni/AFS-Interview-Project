@@ -30,7 +30,6 @@ public class FlurryTower : Tower
         fireTimer -= Time.deltaTime;
         if (fireTimer <= 0f && !isFiring)
         {
-            
             StartCoroutine(FireFlurry());
         }
     }
@@ -42,7 +41,8 @@ public class FlurryTower : Tower
         {
             if (targetEnemy != null)
             {
-                var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity).GetComponent<Bullet>();
+                var bullet = bulletPool.GetFromPool<Bullet>();
+                bullet.transform.position = bulletSpawnPoint.transform.position;
                 bullet.Initialize(targetEnemy);
             }
             else

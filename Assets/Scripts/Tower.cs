@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] protected GameObject bulletPrefab;
+    [SerializeField] protected ObjectPool bulletPool;
     [SerializeField] protected Transform bulletSpawnPoint;
     [SerializeField] protected float firingRange;
     private IReadOnlyList<Enemy> enemies;
     protected Enemy targetEnemy;
 
+    private void Awake()
+    {
+        bulletPool.CreatePool();
+    }
+
     public virtual void Initialize(IReadOnlyList<Enemy> enemies)
     {
+        gameObject.SetActive(true);
         this.enemies = enemies;
     }
 

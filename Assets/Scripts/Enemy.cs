@@ -28,6 +28,7 @@
 
         public void Initialize(Vector2 boundsMin, Vector2 boundsMax)
         {
+            gameObject.SetActive(true);
             this.boundsMin = boundsMin;
             this.boundsMax = boundsMax;
 
@@ -36,15 +37,10 @@
             SetTarget();
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position, Velocity * 1000f);
-        }
-
-        private void OnDestroy()
+        public void Kill()
         {
             OnEnemyDied?.Invoke(this);
+            ObjectPool.ReturnToPool(this);
         }
 
         private void Update()
@@ -70,7 +66,7 @@
 
         private void OnTriggerEnter(Collider other)
         {
-            Destroy(gameObject);
+            Kill();
         }
     }
 }

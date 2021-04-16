@@ -8,11 +8,12 @@ public class ArrowBullet : Bullet
     private Vector3 aimAt;
     private Vector3 startPos;
     private float timeToComplete;
-    private float currentTime = 0;
+    private float currentTime;
 
     private Vector3 nextPos;
     public override void Initialize(Enemy target)
     {
+        currentTime = 0;
         targetObject = target;
         startPos = transform.position;
         nextPos = startPos;
@@ -48,7 +49,7 @@ public class ArrowBullet : Bullet
 
         if (currentTime >= timeToComplete)
         {
-            Destroy(gameObject);
+            ObjectPool.ReturnToPool(this);
         }
     }
 
@@ -56,6 +57,12 @@ public class ArrowBullet : Bullet
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawSphere(aimAt, 0.25f);
+
+        if(targetObject != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(targetObject.transform.position, targetObject.transform.position + targetObject.Velocity * 100f);
+        }
     }
 
     //http://wiki.unity3d.com/index.php/Calculating_Lead_For_Projectiles

@@ -8,6 +8,7 @@ public class FollowerBullet : Bullet
     public override void Initialize(Enemy target)
     {
         targetObject = target;
+        gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -15,7 +16,7 @@ public class FollowerBullet : Bullet
     {
         if (targetObject == null)
         {
-            Destroy(gameObject);
+            ObjectPool.ReturnToPool(this);
             return;
         }
 
@@ -25,8 +26,8 @@ public class FollowerBullet : Bullet
 
         if ((transform.position - targetObject.transform.position).magnitude <= 0.2f)
         {
-            Destroy(gameObject);
-            Destroy(targetObject.gameObject);
+            ObjectPool.ReturnToPool(this);
+            targetObject.Kill();
         }
     }
 }
