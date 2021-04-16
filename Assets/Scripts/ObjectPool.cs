@@ -42,6 +42,13 @@ public class ObjectPool : ScriptableObject
     private void OnDestroy()
     {
         Destroy(transform.gameObject);
+        foreach(var entry in typeToPool)
+        {
+            if(entry.Value == null)
+            {
+                typeToPool.Remove(entry.Key);
+            }
+        }
     }
 
 
