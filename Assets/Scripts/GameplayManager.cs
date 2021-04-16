@@ -21,27 +21,16 @@
         [SerializeField] private GameObject scoreText;
         
         private List<Enemy> enemies;
-        private float enemySpawnTimer;
         private int score;
 
         private void Awake()
         {
             enemies = new List<Enemy>();
+            InvokeRepeating(nameof(SpawnEnemy), enemySpawnRate, enemySpawnRate);
         }
 
         private void Update()
         {
-            enemySpawnTimer -= Time.deltaTime;
-
-            if (enemySpawnTimer <= 0f)
-            {
-                SpawnEnemy();
-                enemySpawnTimer = enemySpawnRate;
-            }
-
-
-            
-
             if (Input.GetMouseButtonDown(0))
             {
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
