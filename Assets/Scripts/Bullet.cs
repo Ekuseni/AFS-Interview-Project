@@ -2,34 +2,11 @@
 {
     using UnityEngine;
 
-    public class Bullet : MonoBehaviour
+    public abstract class Bullet : MonoBehaviour
     {
-        [SerializeField] private float speed;
+        [SerializeField] protected float speed;
+        protected GameObject targetObject;
 
-        private GameObject targetObject;
-
-        public void Initialize(GameObject target)
-        {
-            targetObject = target;
-        }
-
-        private void Update()
-        {
-            if(targetObject == null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            var direction = (targetObject.transform.position - transform.position).normalized;
-
-            transform.position += direction * speed * Time.deltaTime;
-
-            if ((transform.position - targetObject.transform.position).magnitude <= 0.2f)
-            {
-                Destroy(gameObject);
-                Destroy(targetObject);
-            }
-        }
+        public abstract void Initialize(GameObject target);
     }
 }
