@@ -14,7 +14,7 @@ public class FollowerBullet : Bullet
     // Update is called once per frame
     private void Update()
     {
-        if (targetObject == null)
+        if (!targetObject.isActiveAndEnabled)
         {
             ObjectPool.ReturnToPool(this);
             return;
@@ -26,9 +26,22 @@ public class FollowerBullet : Bullet
 
         if ((transform.position - targetObject.transform.position).magnitude <= 0.2f)
         {
-            ObjectPool.ReturnToPool(this);
             targetObject.Kill();
+            ObjectPool.ReturnToPool(this);
         }
     }
-}
 
+    private void OnDrawGizmos()
+    {
+        if (targetObject != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(targetObject.transform.position, 1f);
+        }
+    }
+
+    public override void OnDisable()
+    {
+        targetObject = null;
+    }
+}

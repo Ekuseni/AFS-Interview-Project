@@ -8,5 +8,7 @@
         protected Enemy targetObject;
 
         public abstract void Initialize(Enemy target);
+        public abstract void OnDisable();
+        
     }
 }

@@ -86,7 +86,7 @@ public class ObjectPool : ScriptableObject
                 
             }
         }
-
+        
         monoBehaviour.gameObject.SetActive(false);
         monoBehaviour.gameObject.transform.SetParent(objectPool.transform);
         objectPool.pooledObjects.Enqueue(monoBehaviour.gameObject);

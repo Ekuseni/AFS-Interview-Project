@@ -129,4 +129,9 @@ public class ArrowBullet : Bullet
         else //determinant = 0; one intercept path, pretty much never happens
             return Mathf.Max(-b / (2f * a), 0f); //don't shoot back in time
     }
+
+    public override void OnDisable()
+    {
+        targetObject = null;
+    }
 }
