@@ -17,6 +17,15 @@
         private float speed;
         private Vector3 target;
 
+
+        public Vector3 Velocity
+        {
+            get
+            {
+                return (target - transform.position).normalized * speed;
+            }
+        }
+
         public void Initialize(Vector2 boundsMin, Vector2 boundsMax)
         {
             this.boundsMin = boundsMin;
@@ -25,6 +34,12 @@
             speed = maxSpeed + Random.Range(-speedVariance, speedVariance) * maxSpeed;
 
             SetTarget();
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, Velocity * 1000f);
         }
 
         private void OnDestroy()
@@ -51,6 +66,11 @@
 
             target.x = Mathf.Clamp(target.x, boundsMin.x, boundsMax.x);
             target.z = Mathf.Clamp(target.z, boundsMin.y, boundsMax.y);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -5,8 +5,8 @@
     public abstract class Bullet : MonoBehaviour
     {
         [SerializeField] protected float speed;
-        protected GameObject targetObject;
+        protected Enemy targetObject;
 
-        public abstract void Initialize(GameObject target);
+        public abstract void Initialize(Enemy target);
     }
 }

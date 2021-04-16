@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eec5703541f4bf459a65a26497ee52a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7251337396528109554, guid: bf11f6354539ac0438eed729f7a562e6,
+  bulletPrefab: {fileID: 1147541745643497051, guid: 72286ff965d048b41a80c383b4e224a6,
     type: 3}
   bulletSpawnPoint: {fileID: 5809919413682724424}
   firingRange: 40

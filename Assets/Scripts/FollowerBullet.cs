@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FollowerBullet : Bullet
 {
-    public override void Initialize(GameObject target)
+    public override void Initialize(Enemy target)
     {
         targetObject = target;
     }
@@ -26,7 +26,7 @@ public class FollowerBullet : Bullet
         if ((transform.position - targetObject.transform.position).magnitude <= 0.2f)
         {
             Destroy(gameObject);
-            Destroy(targetObject);
+            Destroy(targetObject.gameObject);
         }
     }
 }

@@ -221,5 +221,5 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7251337396528109554, guid: bf11f6354539ac0438eed729f7a562e6,
     type: 3}
   bulletSpawnPoint: {fileID: 5809919413682724424}
+  firingRange: 40
   firingRate: 2
-  firingRange: 4
